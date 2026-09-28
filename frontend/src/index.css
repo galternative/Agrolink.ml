@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* AgroLink brand reference:
+   primary_dark_green: #063B2A | primary_green: #1F8A3B | fresh_green: #5DBB32
+   agricultural_gold: #C9972B | off_white: #F7F9F5 | white: #FFFFFF
+   dark_text: #17231D | muted_text: #66736B */
+
+body {
+    margin: 0;
+    font-family: 'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@layer base {
+    :root {
+        --background: 72 33% 97%;
+        --foreground: 150 16% 11%;
+        --card: 0 0% 100%;
+        --card-foreground: 150 16% 11%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 150 16% 11%;
+        --primary: 154 81% 13%;
+        --primary-foreground: 72 33% 97%;
+        --secondary: 120 20% 94%;
+        --secondary-foreground: 154 81% 13%;
+        --muted: 120 14% 93%;
+        --muted-foreground: 150 8% 43%;
+        --accent: 43 56% 47%;
+        --accent-foreground: 72 33% 97%;
+        --destructive: 0 72% 52%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 120 10% 86%;
+        --input: 120 10% 86%;
+        --ring: 141 55% 33%;
+        --radius: 0.9rem;
+        --chart-1: 141 55% 33%;
+        --chart-2: 154 81% 13%;
+        --chart-3: 43 56% 47%;
+        --chart-4: 120 45% 46%;
+        --chart-5: 150 8% 43%;
+        --shadow-sm: 0 1px 2px rgba(6, 59, 42, 0.06);
+        --shadow-md: 0 10px 30px rgba(6, 59, 42, 0.1);
+        --shadow-lg: 0 18px 60px rgba(6, 59, 42, 0.14);
+        --focus-ring: 0 0 0 4px rgba(31, 138, 59, 0.18);
+    }
+    .dark {
+        --background: 154 81% 8%;
+        --foreground: 72 33% 97%;
+        --card: 154 60% 11%;
+        --card-foreground: 72 33% 97%;
+        --popover: 154 60% 11%;
+        --popover-foreground: 72 33% 97%;
+        --primary: 141 55% 33%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 154 40% 16%;
+        --secondary-foreground: 72 33% 97%;
+        --muted: 154 40% 16%;
+        --muted-foreground: 120 10% 65%;
+        --accent: 43 56% 47%;
+        --accent-foreground: 154 81% 13%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 154 30% 20%;
+        --input: 154 30% 20%;
+        --ring: 141 55% 45%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+/* Nav underline micro-interaction */
+.nav-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    height: 2px;
+    width: 0;
+    background: #1f8a3b;
+    transition: width 0.25s ease;
+    border-radius: 2px;
+}
+.nav-underline:hover::after {
+    width: 100%;
+}
+
+/* Line clamp helper */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Subtle grain texture for premium feel */
+.grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.035;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f7f9f5;
+}
+::-webkit-scrollbar-thumb {
+    background: #c2cec5;
+    border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #9fb0a5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+@layer base {
+    [data-debug-wrapper='true'] {
+        display: contents !important;
+    }
+
+    [data-debug-wrapper='true'] > * {
+        margin-left: inherit;
+        margin-right: inherit;
+        margin-top: inherit;
+        margin-bottom: inherit;
+        padding-left: inherit;
+        padding-right: inherit;
+        padding-top: inherit;
+        padding-bottom: inherit;
+        column-gap: inherit;
+        row-gap: inherit;
+        gap: inherit;
+        border-left-width: inherit;
+        border-right-width: inherit;
+        border-top-width: inherit;
+        border-bottom-width: inherit;
+        border-left-style: inherit;
+        border-right-style: inherit;
+        border-top-style: inherit;
+        border-bottom-style: inherit;
+        border-left-color: inherit;
+        border-right-color: inherit;
+        border-top-color: inherit;
+        border-bottom-color: inherit;
+    }
+}
