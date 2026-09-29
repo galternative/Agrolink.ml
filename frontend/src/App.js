@@ -19,6 +19,7 @@ import AdminTeam from "@/pages/admin/AdminTeam";
 import AdminPartners from "@/pages/admin/AdminPartners";
 import AdminEnquiries from "@/pages/admin/AdminEnquiries";
 import AdminSettings from "@/pages/admin/AdminSettings";
+import MarioMinguina from "@/pages/MarioMinguina";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="/solutions" element={<Solutions />} />
             <Route path="/agribusiness" element={<Agribusiness />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/mariominguina" element={<MarioMinguina />} />
           </Route>
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminLayout />}>
