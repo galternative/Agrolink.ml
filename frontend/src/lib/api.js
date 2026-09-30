@@ -23,7 +23,28 @@ api.interceptors.request.use((config) => {
 });
 
 api.interceptors.response.use(
-  (res) => res,
+  (res) => {
+    // The frontend can run while the backend is unavailable.
+    // Cloudflare may return index.html with HTTP 200 for /api/* requests.
+    // Public list pages expect arrays, so normalize unexpected list
+    // responses to [] instead of allowing .map/.filter to crash React.
+    const url = String(res.config?.url || "");
+    const isListEndpoint =
+      /\/(categories|team|partners)(?:\?|$)/.test(url) ||
+      /\/products(?:\?.*)?$/.test(url);
+
+    if (isListEndpoint && !Array.isArray(res.data)) {
+      if (Array.isArray(res.data?.items)) {
+        res.data = res.data.items;
+      } else if (Array.isArray(res.data?.data)) {
+        res.data = res.data.data;
+      } else {
+        res.data = [];
+      }
+    }
+
+    return res;
+  },
   (err) => {
     if (
       err?.response?.status === 401 &&
