@@ -440,7 +440,7 @@ export default function Home() {
                       alt={p.name}
                       loading="lazy"
                       decoding="async"
-                      className="max-h-12 max-w-full object-contain"
+                      className={`max-h-14 max-w-[90%] object-contain ${i === 0 ? "scale-125" : ""}`}
                     />
                   ) : (
                     <span className="text-sm font-bold text-[#66736B]">{p.name}</span>
