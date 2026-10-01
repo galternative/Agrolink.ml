@@ -39,6 +39,12 @@ const ABOUT_IMG =
 const NETWORK_IMG =
   "https://images.unsplash.com/photo-1518889767729-1db630b9253b?crop=entropy&cs=srgb&fm=jpg&q=80&w=1600";
 
+const STATIC_PARTNERS = [
+  { name: "Grupo Chicoil", logo: "/Grupochicoil.png" },
+  { name: "Agrolink Partner", logo: "/file_000000000ac8820eb8e69889b95b4bcc.png" },
+  { name: "Agrolink Partner", logo: "/file_000000004344820eb7a438ccd6c6c646.png" },
+];
+
 const SECTOR_IMAGES = [
   "https://images.unsplash.com/photo-1560493676-04071c5f467b?crop=entropy&cs=srgb&fm=jpg&q=75&w=800",
   "https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?crop=entropy&cs=srgb&fm=jpg&q=75&w=800",
@@ -422,29 +428,25 @@ export default function Home() {
           <SectionHeader label={t("partners.label")} title={t("partners.title")} subtitle={t("partners.subtitle")} />
           <Reveal>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4" data-testid="partners-grid">
-              {partners.length > 0
-                ? partners.map((p) => (
-                    <div
-                      key={p.id}
-                      data-testid="partner-logo"
-                      className="rounded-2xl bg-white border border-[#17231D]/10 h-24 flex items-center justify-center p-4 grayscale hover:grayscale-0 transition-all duration-300"
-                    >
-                      {p.logo ? (
-                        <img src={p.logo} alt={p.name} loading="lazy" className="max-h-12 max-w-full object-contain" />
-                      ) : (
-                        <span className="text-sm font-bold text-[#66736B]">{p.name}</span>
-                      )}
-                    </div>
-                  ))
-                : Array.from({ length: 6 }).map((_, i) => (
-                    <div
-                      key={i}
-                      data-testid="partner-placeholder"
-                      className="rounded-2xl bg-white border border-dashed border-[#17231D]/15 h-24 flex items-center justify-center"
-                    >
-                      <span className="text-xs font-semibold text-[#66736B]/60">{t("partners.placeholder")}</span>
-                    </div>
-                  ))}
+              {[...STATIC_PARTNERS, ...partners].map((p, i) => (
+                <div
+                  key={p.id || `static-partner-${i}`}
+                  data-testid="partner-logo"
+                  className="rounded-2xl bg-white border border-[#17231D]/10 h-24 flex items-center justify-center p-4 grayscale hover:grayscale-0 transition-all duration-300"
+                >
+                  {p.logo ? (
+                    <img
+                      src={p.logo}
+                      alt={p.name}
+                      loading="lazy"
+                      decoding="async"
+                      className="max-h-12 max-w-full object-contain"
+                    />
+                  ) : (
+                    <span className="text-sm font-bold text-[#66736B]">{p.name}</span>
+                  )}
+                </div>
+              ))}
             </div>
             <div className="mt-8 text-center">
               <Button
