@@ -43,7 +43,7 @@ const STATIC_PARTNERS = [
   { name: "Grupo Chicoil", logo: "/Grupochicoil.png" },
   { name: "Agrolink Partner", logo: "/file_000000000ac8820eb8e69889b95b4bcc.png" },
   { name: "Agrolink Partner", logo: "/file_000000004344820eb7a438ccd6c6c646.png" },
-  { name: "Agrolink Partner", logo: "/(1).png" },
+  { name: "Agrolink Partner", logo: "/Cafecazengo.png" },
 ];
 
 const SECTOR_IMAGES = [
