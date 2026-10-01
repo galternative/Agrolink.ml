@@ -432,7 +432,7 @@ export default function Home() {
                 <div
                   key={p.id || `static-partner-${i}`}
                   data-testid="partner-logo"
-                  className="rounded-2xl bg-white border border-[#17231D]/10 h-24 flex items-center justify-center p-4 grayscale hover:grayscale-0 transition-all duration-300"
+                  className="rounded-2xl bg-white border border-[#17231D]/10 h-24 flex items-center justify-center p-4 transition-all duration-300 hover:shadow-md"
                 >
                   {p.logo ? (
                     <img
