@@ -29,6 +29,7 @@ import {
   Package,
   Tractor,
   Globe2,
+  Coffee,
   CheckCircle2,
 } from "lucide-react";
 
@@ -53,6 +54,7 @@ const SECTOR_IMAGES = [
   "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?crop=entropy&cs=srgb&fm=jpg&q=75&w=800",
   "https://images.unsplash.com/photo-1574943320219-553eb213f72d?crop=entropy&cs=srgb&fm=jpg&q=75&w=800",
   "https://images.unsplash.com/photo-1518889767729-1db630b9253b?crop=entropy&cs=srgb&fm=jpg&q=75&w=800",
+  "/Zengo.png",
 ];
 
 const LeafPattern = () => (
@@ -89,7 +91,14 @@ export default function Home() {
 
   const vpIcons = [Sprout, Wheat, Package, Link2];
   const whyIcons = [Handshake, ShieldCheck, LineChart, Headset, Puzzle, Users];
-  const sectorIcons = [Wheat, Beef, Egg, Package, Sprout, Globe2];
+  const sectorIcons = [Wheat, Beef, Egg, Package, Sprout, Globe2, Coffee];
+  const sectorItems = [
+    ...t("sectors.items"),
+    {
+      title: "Coffee",
+      desc: "Coffee production, sourcing and supply solutions connecting producers with regional and international markets.",
+    },
+  ];
 
   return (
     <div>
@@ -388,7 +397,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader label={t("sectors.label")} title={t("sectors.title")} />
           <RevealStagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {t("sectors.items").map((item, i) => {
+            {sectorItems.map((item, i) => {
               const Icon = sectorIcons[i];
               return (
                 <RevealItem key={i}>
