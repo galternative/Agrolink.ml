@@ -23,6 +23,14 @@ export default function Contact() {
     queryKey: ["settings"],
     queryFn: async () => (await api.get("/settings")).data,
   });
+
+  // Frontend fallbacks keep the branch contacts visible even when
+  // the backend settings endpoint does not yet contain the new details.
+  const contactEmail = settings?.email || "agrolink.ml@gmail.com";
+  const angolaPhone = settings?.phone_angola || "+244 924 546 980";
+  const namibiaPhone = settings?.phone_namibia || "+264 85 379 4593";
+  const angolaWhatsapp = settings?.whatsapp_angola || "+244 924 546 980";
+  const namibiaWhatsapp = settings?.whatsapp_namibia || "+264 85 379 4593";
   const { data: products = [] } = useQuery({
     queryKey: ["products", "all"],
     queryFn: async () => (await api.get("/products?limit=500")).data,
@@ -222,36 +230,32 @@ export default function Contact() {
             <div className="rounded-3xl bg-[#063B2A] p-8 text-white">
               <h3 className="font-bold text-lg">{t("contact.whatsappTitle")}</h3>
               <div className="mt-5 space-y-3">
-                {settings?.whatsapp_angola && (
-                  <a
-                    data-testid="whatsapp-angola-button"
-                    href={waLink(settings.whatsapp_angola)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 rounded-2xl bg-white/10 hover:bg-white/15 border border-[#5DBB32]/30 px-5 py-4 transition-colors"
-                  >
-                    <MessageCircle className="w-5 h-5 text-[#5DBB32]" />
-                    <div>
-                      <p className="font-bold text-sm">{t("contact.whatsappAngola")}</p>
-                      <p className="text-xs text-white/60">{settings.phone_angola}</p>
-                    </div>
-                  </a>
-                )}
-                {settings?.whatsapp_namibia && (
-                  <a
-                    data-testid="whatsapp-namibia-button"
-                    href={waLink(settings.whatsapp_namibia)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 rounded-2xl bg-white/10 hover:bg-white/15 border border-[#5DBB32]/30 px-5 py-4 transition-colors"
-                  >
-                    <MessageCircle className="w-5 h-5 text-[#5DBB32]" />
-                    <div>
-                      <p className="font-bold text-sm">{t("contact.whatsappNamibia")}</p>
-                      <p className="text-xs text-white/60">{settings.phone_namibia}</p>
-                    </div>
-                  </a>
-                )}
+                <a
+                  data-testid="whatsapp-angola-button"
+                  href={waLink(angolaWhatsapp)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 rounded-2xl bg-white/10 hover:bg-white/15 border border-[#5DBB32]/30 px-5 py-4 transition-colors"
+                >
+                  <MessageCircle className="w-5 h-5 text-[#5DBB32]" />
+                  <div>
+                    <p className="font-bold text-sm">{t("contact.whatsappAngola")}</p>
+                    <p className="text-xs text-white/60">{angolaPhone}</p>
+                  </div>
+                </a>
+                <a
+                  data-testid="whatsapp-namibia-button"
+                  href={waLink(namibiaWhatsapp)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 rounded-2xl bg-white/10 hover:bg-white/15 border border-[#5DBB32]/30 px-5 py-4 transition-colors"
+                >
+                  <MessageCircle className="w-5 h-5 text-[#5DBB32]" />
+                  <div>
+                    <p className="font-bold text-sm">{t("contact.whatsappNamibia")}</p>
+                    <p className="text-xs text-white/60">{namibiaPhone}</p>
+                  </div>
+                </a>
               </div>
             </div>
 
@@ -266,7 +270,10 @@ export default function Contact() {
                     <p className="font-bold text-sm text-[#17231D]">{t("contact.angolaBranch")}</p>
                     <p className="text-sm text-[#66736B] flex items-center gap-1.5 mt-1">
                       <Phone className="w-3.5 h-3.5" />
-                      {settings?.phone_angola || "—"}
+                      {angolaPhone}
+                    </p>
+                    <p className="text-xs text-[#66736B] mt-1">
+                      Luanda, Angola · Nº Fiscal 5003515893
                     </p>
                   </div>
                 </div>
@@ -278,7 +285,10 @@ export default function Contact() {
                     <p className="font-bold text-sm text-[#17231D]">{t("contact.namibiaBranch")}</p>
                     <p className="text-sm text-[#66736B] flex items-center gap-1.5 mt-1">
                       <Phone className="w-3.5 h-3.5" />
-                      {settings?.phone_namibia || "—"}
+                      {namibiaPhone}
+                    </p>
+                    <p className="text-xs text-[#66736B] mt-1">
+                      Rocky Crest, Namibia
                     </p>
                   </div>
                 </div>
@@ -289,11 +299,11 @@ export default function Contact() {
                   <div>
                     <p className="font-bold text-sm text-[#17231D]">{t("contact.emailTitle")}</p>
                     <a
-                      href={`mailto:${settings?.email || ""}`}
+                      href={`mailto:${contactEmail}`}
                       className="text-sm text-[#1F8A3B] hover:underline mt-1 inline-block"
                       data-testid="contact-email-link"
                     >
-                      {settings?.email || "—"}
+                      {contactEmail}
                     </a>
                   </div>
                 </div>
