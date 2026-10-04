@@ -12,6 +12,13 @@ export const Footer = () => {
     queryFn: async () => (await api.get("/settings")).data,
   });
 
+  // Frontend fallbacks so branch contacts remain visible even if
+  // the backend settings endpoint does not contain these values yet.
+  const contactEmail = settings?.email || "agrolink.ml@gmail.com";
+  const angolaPhone = settings?.phone_angola || "+244 924 546 980";
+  const namibiaPhone = settings?.phone_namibia || "+264 85 379 4593";
+  const angolaWhatsapp = settings?.whatsapp_angola || "+244 924 546 980";
+
   const navLinks = [
     { to: "/", label: t("nav.home") },
     { to: "/about", label: t("nav.about") },
@@ -51,45 +58,50 @@ export const Footer = () => {
           <div>
             <h4 className="text-sm font-bold tracking-wider uppercase text-[#5DBB32] mb-4">{t("footer.contact")}</h4>
             <ul className="space-y-3 text-sm text-white/80">
-              {settings?.email && (
-                <li className="flex items-start gap-2.5">
-                  <Mail className="w-4 h-4 mt-0.5 text-[#C9972B] shrink-0" />
-                  <a href={`mailto:${settings.email}`} className="hover:text-white transition-colors" data-testid="footer-email">
-                    {settings.email}
-                  </a>
-                </li>
-              )}
-              {settings?.phone_angola && (
-                <li className="flex items-start gap-2.5">
-                  <Phone className="w-4 h-4 mt-0.5 text-[#C9972B] shrink-0" />
-                  <span>
-                    <span className="block text-xs text-white/50">{t("contact.angolaBranch")}</span>
-                    {settings.phone_angola}
-                  </span>
-                </li>
-              )}
-              {settings?.phone_namibia && (
-                <li className="flex items-start gap-2.5">
-                  <Phone className="w-4 h-4 mt-0.5 text-[#C9972B] shrink-0" />
-                  <span>
-                    <span className="block text-xs text-white/50">{t("contact.namibiaBranch")}</span>
-                    {settings.phone_namibia}
-                  </span>
-                </li>
-              )}
-              {settings?.whatsapp_angola && (
-                <li className="flex items-start gap-2.5">
-                  <MessageCircle className="w-4 h-4 mt-0.5 text-[#C9972B] shrink-0" />
-                  <a
-                    href={`https://wa.me/${settings.whatsapp_angola.replace(/[^0-9]/g, "")}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-white transition-colors"
-                  >
-                    WhatsApp
-                  </a>
-                </li>
-              )}
+              <li className="flex items-start gap-2.5">
+                <Mail className="w-4 h-4 mt-0.5 text-[#C9972B] shrink-0" />
+                <a href={`mailto:${contactEmail}`} className="hover:text-white transition-colors" data-testid="footer-email">
+                  {contactEmail}
+                </a>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <Phone className="w-4 h-4 mt-0.5 text-[#C9972B] shrink-0" />
+                <span>
+                  <span className="block text-xs text-white/50">{t("contact.angolaBranch")}</span>
+                  {angolaPhone}
+                  <span className="block text-xs text-white/50 mt-0.5">Luanda, Angola · Nº Fiscal 5003515893</span>
+                </span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <Phone className="w-4 h-4 mt-0.5 text-[#C9972B] shrink-0" />
+                <span>
+                  <span className="block text-xs text-white/50">{t("contact.namibiaBranch")}</span>
+                  {namibiaPhone}
+                  <span className="block text-xs text-white/50 mt-0.5">Rocky Crest, Namibia</span>
+                </span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <MessageCircle className="w-4 h-4 mt-0.5 text-[#C9972B] shrink-0" />
+                <a
+                  href={`https://wa.me/${angolaWhatsapp.replace(/[^0-9]/g, "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  WhatsApp — Angola
+                </a>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <MessageCircle className="w-4 h-4 mt-0.5 text-[#C9972B] shrink-0" />
+                <a
+                  href={`https://wa.me/${namibiaPhone.replace(/[^0-9]/g, "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  WhatsApp — Namibia
+                </a>
+              </li>
             </ul>
           </div>
 
