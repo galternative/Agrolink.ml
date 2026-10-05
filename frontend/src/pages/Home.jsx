@@ -57,8 +57,8 @@ const SECTOR_IMAGES = [
   "https://images.unsplash.com/photo-1574943320219-553eb213f72d?crop=entropy&cs=srgb&fm=jpg&q=75&w=800",
   "https://images.unsplash.com/photo-1518889767729-1db630b9253b?crop=entropy&cs=srgb&fm=jpg&q=75&w=800",
   "/Zengo.png",
-  "/wood.png",
-  "/solars.jpeg",
+  "/Wood.jpg",
+  "/Solars.jpeg",
 ];
 
 const LeafPattern = () => (
@@ -105,7 +105,7 @@ export default function Home() {
     ? [
         {
           title: "Madeira",
-          desc: "Soluções de fornecimento e sourcing de madeira para construção, indústria e outros mercados.",
+          desc: "Soluções de fornecimento e aquisição de madeira para construção, indústria e outros mercados.",
         },
         {
           title: "Painéis Solares",
@@ -128,7 +128,7 @@ export default function Home() {
     {
       title: lang === "pt" ? "Café" : "Coffee",
       desc: lang === "pt"
-        ? "Soluções de produção, sourcing e fornecimento de café, conectando produtores aos mercados regionais e internacionais."
+        ? "Soluções de produção, aquisição e fornecimento de café, conectando produtores aos mercados regionais e internacionais."
         : "Coffee production, sourcing and supply solutions connecting producers with regional and international markets.",
     },
     ...newSectorItems,
