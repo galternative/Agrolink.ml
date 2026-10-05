@@ -30,6 +30,8 @@ import {
   Tractor,
   Globe2,
   Coffee,
+  TreePine,
+  Sun,
   CheckCircle2,
 } from "lucide-react";
 
@@ -55,6 +57,8 @@ const SECTOR_IMAGES = [
   "https://images.unsplash.com/photo-1574943320219-553eb213f72d?crop=entropy&cs=srgb&fm=jpg&q=75&w=800",
   "https://images.unsplash.com/photo-1518889767729-1db630b9253b?crop=entropy&cs=srgb&fm=jpg&q=75&w=800",
   "/Zengo.png",
+  "/wood.png",
+  "/solars.jpeg",
 ];
 
 const LeafPattern = () => (
@@ -91,13 +95,43 @@ export default function Home() {
 
   const vpIcons = [Sprout, Wheat, Package, Link2];
   const whyIcons = [Handshake, ShieldCheck, LineChart, Headset, Puzzle, Users];
-  const sectorIcons = [Wheat, Beef, Egg, Package, Sprout, Globe2, Coffee];
+  const sectorIcons = [Wheat, Beef, Egg, Package, Sprout, Globe2, Coffee, TreePine, Sun];
+
+  // The existing sector items come from the i18n system. The new sectors
+  // use the current language as well, so their title/description never
+  // remain hard-coded in English when the user switches to Portuguese.
+  const { lang } = useLanguage();
+  const newSectorItems = lang === "pt"
+    ? [
+        {
+          title: "Madeira",
+          desc: "Soluções de fornecimento e sourcing de madeira para construção, indústria e outros mercados.",
+        },
+        {
+          title: "Painéis Solares",
+          desc: "Soluções de fornecimento de painéis solares para projetos de energia e necessidades comerciais.",
+        },
+      ]
+    : [
+        {
+          title: "Wood",
+          desc: "Wood sourcing and supply solutions for construction, industry and other markets.",
+        },
+        {
+          title: "Solar Panels",
+          desc: "Solar panel sourcing and supply solutions for energy projects and commercial needs.",
+        },
+      ];
+
   const sectorItems = [
     ...t("sectors.items"),
     {
-      title: "Coffee",
-      desc: "Coffee production, sourcing and supply solutions connecting producers with regional and international markets.",
+      title: lang === "pt" ? "Café" : "Coffee",
+      desc: lang === "pt"
+        ? "Soluções de produção, sourcing e fornecimento de café, conectando produtores aos mercados regionais e internacionais."
+        : "Coffee production, sourcing and supply solutions connecting producers with regional and international markets.",
     },
+    ...newSectorItems,
   ];
 
   return (
