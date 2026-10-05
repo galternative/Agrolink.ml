@@ -17,6 +17,7 @@ export const Footer = () => {
   const contactEmail = settings?.email || "agrolink.ml@gmail.com";
   const angolaPhone = settings?.phone_angola || "+244 924 546 980";
   const namibiaPhone = settings?.phone_namibia || "+264 85 379 4593";
+  const namibiaPhone2 = settings?.phone_namibia_2 || "0813394483";
   const angolaWhatsapp = settings?.whatsapp_angola || "+244 924 546 980";
 
   const navLinks = [
@@ -77,7 +78,8 @@ export const Footer = () => {
                 <span>
                   <span className="block text-xs text-white/50">{t("contact.namibiaBranch")}</span>
                   {namibiaPhone}
-                  <span className="block text-xs text-white/50 mt-0.5">Rocky Crest, Namibia</span>
+                  <span className="block text-xs text-white/80">{namibiaPhone2}</span>
+                  <span className="block text-xs text-white/50 mt-0.5">Rocky Crest Ext 4, Namibia</span>
                 </span>
               </li>
               <li className="flex items-start gap-2.5">
@@ -95,6 +97,18 @@ export const Footer = () => {
                 <MessageCircle className="w-4 h-4 mt-0.5 text-[#C9972B] shrink-0" />
                 <a
                   href={`https://wa.me/${namibiaPhone.replace(/[^0-9]/g, "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  WhatsApp — Namibia
+                </a>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <MessageCircle className="w-4 h-4 mt-0.5 text-[#C9972B] shrink-0" />
+                <a
+                  data-testid="whatsapp-namibia-2"
+                  href={`https://wa.me/${namibiaPhone2.replace(/[^0-9]/g, "")}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors"
