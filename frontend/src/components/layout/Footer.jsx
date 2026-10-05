@@ -17,7 +17,7 @@ export const Footer = () => {
   const contactEmail = settings?.email || "agrolink.ml@gmail.com";
   const angolaPhone = settings?.phone_angola || "+244 924 546 980";
   const namibiaPhone = settings?.phone_namibia || "+264 85 379 4593";
-  const namibiaPhone2 = settings?.phone_namibia_2 || "0813394483";
+  const namibiaPhone2 = settings?.phone_namibia_2 || "+264 813394483";
   const angolaWhatsapp = settings?.whatsapp_angola || "+244 924 546 980";
 
   const navLinks = [
