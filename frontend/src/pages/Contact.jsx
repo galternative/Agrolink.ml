@@ -29,6 +29,7 @@ export default function Contact() {
   const contactEmail = settings?.email || "agrolink.ml@gmail.com";
   const angolaPhone = settings?.phone_angola || "+244 924 546 980";
   const namibiaPhone = settings?.phone_namibia || "+264 85 379 4593";
+  const namibiaPhone2 = settings?.phone_namibia_2 || "0813394483";
   const angolaWhatsapp = settings?.whatsapp_angola || "+244 924 546 980";
   const namibiaWhatsapp = settings?.whatsapp_namibia || "+264 85 379 4593";
   const { data: products = [] } = useQuery({
@@ -244,6 +245,19 @@ export default function Contact() {
                   </div>
                 </a>
                 <a
+                  data-testid="whatsapp-namibia-2-button"
+                  href={waLink(namibiaPhone2)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 rounded-2xl bg-white/10 hover:bg-white/15 border border-[#5DBB32]/30 px-5 py-4 transition-colors"
+                >
+                  <MessageCircle className="w-5 h-5 text-[#5DBB32]" />
+                  <div>
+                    <p className="font-bold text-sm">WhatsApp — Namibia</p>
+                    <p className="text-xs text-white/60">{namibiaPhone2}</p>
+                  </div>
+                </a>
+                <a
                   data-testid="whatsapp-namibia-button"
                   href={waLink(namibiaWhatsapp)}
                   target="_blank"
@@ -287,8 +301,11 @@ export default function Contact() {
                       <Phone className="w-3.5 h-3.5" />
                       {namibiaPhone}
                     </p>
+                    <p className="text-sm text-[#173F35] mt-1">
+                      {namibiaPhone2}
+                    </p>
                     <p className="text-xs text-[#66736B] mt-1">
-                      Rocky Crest, Namibia
+                      Rocky Crest Ext 4, Namibia
                     </p>
                   </div>
                 </div>
